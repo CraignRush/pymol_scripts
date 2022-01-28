@@ -62,6 +62,19 @@ def create_prApe1():
     cmd.show("surface", sname)
     outputPicture(fileName)
 
+def create_single_prApe1():
+    spath = "../PDB/prApe1/5jh9.cif"
+    sname = "single_prApe1"
+    fileName = loadStructure(spath, sname,assembly=False)    
+    cmd.hide("everything")
+    cmd.color("gray40", sname)
+    cmd.color("yellow", "resi 1-45")
+    cmd.show("cartoon", sname)        
+    cmd.set("surface_type","2")
+    cmd.set("transparency",0.4)
+    cmd.show("surface", sname)
+    outputPicture(fileName)
+
 
 def create_mApe1():
     spath = "../PDB/mApe1/5jgf.cif"
@@ -132,18 +145,22 @@ def create_Atg19():
 
 
 
-
+create_single_prApe1()
+#cmd.reinitialize()
 #create_Ams1()
 #cmd.reinitialize()
 #create_mApe1()
-#cmd.reinitialize()
-#create_prApe1()
+cmd.reinitialize()
+create_prApe1()
 
-create_Atg8()
-cmd.reinitialize()
-create_Atg11()
-cmd.reinitialize()
-create_Atg19()
+# create_Atg8()
+# cmd.reinitialize()
+# create_Atg11()
+# cmd.reinitialize()
+# create_Atg19()
+
+
+
 # Get out!
 cmd.quit()
 
