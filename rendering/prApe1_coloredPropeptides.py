@@ -3,19 +3,19 @@ import __main__
 from pkg_resources import load_entry_point
 
 
-__main__.pymol_argv = [ "pymol" ] # Quiet and no GUI "-qc"
+__main__.pymol_argv = [ "pymol"]#, "-qc" ] # Quiet and no GUI "-qc"
 
 import sys, time, os
 import pymol
 import pymol.cmd as cmd
 
-from pathlib import Path
+#from pathlib import Path
 
-stdout = sys.stdout
-stderr = sys.stderr
+#stdout = sys.stdout
+#stderr = sys.stderr
 pymol.finish_launching()
-sys.stdout = stdout
-sys.stderr = stderr
+#sys.stdout = stdout
+#sys.stderr = stderr
 
 ##
 # Read User Input
@@ -25,6 +25,8 @@ sys.stderr = stderr
 #ENABLE_RAYTRACING = False
 
 img = [1920,1080]
+cmd.util.performance(100)
+cmd.rebuild()
 
 
 
@@ -35,7 +37,7 @@ def loadStructure(spath, sname, assembly = True):
     cmd.load(spath, sname)
     cmd.disable("all")
     cmd.enable(sname)    
-    Path("./Output").mkdir(parents=True, exist_ok=True)
+    #Path("./Output").mkdir(parents=True, exist_ok=True)
     return "./Output/" + sname + ".png"
 
 def create_prApe1():
@@ -58,29 +60,32 @@ def create_mApe1():
     cmd.hide("everything")
     cmd.color("grey60", sname)
     cmd.show("cartoon", sname)        
-    cmd.set("surface_type",2,sname,0)
-    cmd.set("transparency",0.8,sname,0)
+    cmd.set("surface_type","2")
+    cmd.set("transparency","0.80000")
     cmd.set("surface_color", "gray80", sname, quiet=0)
     outputPicture(fileName)
 
 def create_Ams1():
     spath = "../PDB/Ams1/5jm0.cif"
-    sname = "Ams1"    
+    sname = "Ams1_surf"    
     fileName = loadStructure(spath, sname)
     cmd.hide("everything")
     cmd.color("forest", sname)
     cmd.show("cartoon", sname)        
-    cmd.set("surface_type",2,sname,0)
-    cmd.set("transparency",0.8,sname,0)
-    cmd.set("surface_color", "gray80", sname, quiet=0)
+    cmd.set("surface_type","2")
+    cmd.set("transparency","0.80000")
+    cmd.set("surface_color", "tv_orange")
     cmd.show("surface", sname)
-    outputPicture(fileName)
+    #outputPicture(fileName)
 
 
-def outputPicture(fileName):    
-    print("exporting file")
+def outputPicture(fileName):   
     cmd.set('ray_opaque_background', 0)
+     
+    print("Starting Ray tracing")
     cmd.ray(img[0],img[1])
+     
+    print("Exporting to {}".format(fileName))
     cmd.png(fileName,img[0],img[1])
 
 create_Ams1()
