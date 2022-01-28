@@ -24,7 +24,7 @@ pymol.finish_launching()
 
 #ENABLE_RAYTRACING = False
 
-img = [1080,768]
+img = [1920,1080]
 cmd.util.performance(100)
 cmd.rebuild()
 cmd.viewport(img[0],img[1])
@@ -55,14 +55,14 @@ def create_prApe1():
 
 
 def create_mApe1():
-    spath = "../PDB/mApe1/5jgf-sf.cif"
+    spath = "../PDB/mApe1/5jgf.cif"
     sname = "mApe1"    
     fileName = loadStructure(spath, sname)
     cmd.hide("everything")
     cmd.color("grey60", sname)
     cmd.show("cartoon", sname)        
     cmd.set("surface_type","2")
-    cmd.set("transparency",0.80000)
+    cmd.set("transparency",0.50000)
     cmd.set("surface_color", "gray80")
     cmd.show("surface", sname)
     outputPicture(fileName)
@@ -88,13 +88,13 @@ def outputPicture(fileName):
     #cmd.ray(img[0],img[1])
      
     print("Exporting to {}".format(fileName))
-    cmd.png(fileName,img[0],img[1],-1,1)
+    cmd.png(fileName, width =img[0],height= img[1],dpi = 300, ray = 1)
 
-create_Ams1()
-cmd.reinitialize()
+#create_Ams1()
+#cmd.reinitialize()
 create_mApe1()
-cmd.reinitialize()
-create_prApe1()
+#cmd.reinitialize()
+#create_prApe1()
 
 # Get out!
 cmd.quit()
