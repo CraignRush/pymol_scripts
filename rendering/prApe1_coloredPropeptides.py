@@ -40,6 +40,15 @@ def loadStructure(spath, sname, assembly = True):
     #Path("./Output").mkdir(parents=True, exist_ok=True)
     return "./Output/" + sname + ".png"
 
+def outputPicture(fileName):   
+    cmd.set('ray_opaque_background', 0)
+     
+    print("Starting Ray tracing")
+    #cmd.ray(img[0],img[1])
+     
+    print("Exporting to {}".format(fileName))
+    cmd.png(fileName, width =img[0],height= img[1],dpi = 300, ray = 1)
+
 def create_prApe1():
     spath = "../PDB/prApe1/5jh9.cif"
     sname = "prApe1"
@@ -80,22 +89,61 @@ def create_Ams1():
     cmd.show("surface", sname)
     outputPicture(fileName)
 
+def create_Atg8():
+    spath = "../PDB/Atg8/6wy6.cif"
+    sname = "Atg8"    
+    fileName = loadStructure(spath, sname)
+    cmd.hide("everything")
+    cmd.color("lime", sname)
+    cmd.show("cartoon", sname)        
+    cmd.set("surface_type","2")
+    cmd.set("transparency",0.800)
+    cmd.set("surface_color", "lime")
+    cmd.show("surface", sname)
+    outputPicture(fileName)
 
-def outputPicture(fileName):   
-    cmd.set('ray_opaque_background', 0)
-     
-    print("Starting Ray tracing")
-    #cmd.ray(img[0],img[1])
-     
-    print("Exporting to {}".format(fileName))
-    cmd.png(fileName, width =img[0],height= img[1],dpi = 300, ray = 1)
+def create_Atg11():
+    spath = "../PDB/Atg11/AF-Q12527-F1-model_v2.pdb"
+    sname = "Atg11"    
+    fileName = loadStructure(spath, sname, assembly=False)
+    cmd.hide("everything")
+    cmd.color("marine", sname)
+    cmd.show("cartoon", sname)        
+    cmd.set("surface_type","2")
+    cmd.set("transparency",0.800)
+    cmd.set("surface_color", "marine")
+    cmd.show("surface", sname)
+    outputPicture(fileName)
+
+def create_Atg19():
+    spath = "../PDB/Atg19/AF-P35193-F1-model_v2.pdb"
+    sname = "Atg19"    
+    fileName = loadStructure(spath, sname, assembly=False)
+    cmd.hide("everything")
+    cmd.color("aquamarine", sname)
+    cmd.show("cartoon", sname)        
+    cmd.set("surface_type","2")
+    cmd.set("transparency",0.800)
+    cmd.set("surface_color", "aquamarine")
+    cmd.show("surface", sname)
+    outputPicture(fileName)
+
+
+
+
+
 
 #create_Ams1()
 #cmd.reinitialize()
-create_mApe1()
+#create_mApe1()
 #cmd.reinitialize()
 #create_prApe1()
 
+create_Atg8()
+cmd.reinitialize()
+create_Atg11()
+cmd.reinitialize()
+create_Atg19()
 # Get out!
 cmd.quit()
 
