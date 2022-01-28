@@ -24,7 +24,7 @@ pymol.finish_launching()
 
 #ENABLE_RAYTRACING = False
 
-img = [1920,1080]
+img = [1080,768]
 cmd.util.performance(100)
 cmd.rebuild()
 
@@ -76,7 +76,7 @@ def create_Ams1():
     cmd.set("transparency","0.80000")
     cmd.set("surface_color", "tv_orange")
     cmd.show("surface", sname)
-    #outputPicture(fileName)
+    outputPicture(fileName)
 
 
 def outputPicture(fileName):   
