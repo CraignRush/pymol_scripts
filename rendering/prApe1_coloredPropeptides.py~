@@ -153,7 +153,7 @@ def create_Atg19():
 #cmd.reinitialize()
 #create_prApe1()
 
-#create_Atg8()
+create_Atg8()
 # cmd.reinitialize()
 # create_Atg11()
 # cmd.reinitialize()
