@@ -1,3 +1,6 @@
+# Image and video outputs
+rendering/Output
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

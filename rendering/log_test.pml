@@ -45,3 +45,9 @@ fetch 5jh9, async=0
 fetch 5jh9, type=2fofc, async=0
 cmd.select('sele','none')
 cmd.select('sele',"byresi((((sele) or byresi((5jh9`6307))) and not ((byresi((5jh9`6307))) and byresi(sele))))",enable=1)
+
+_ viewport 1920, 1428
+ray 1920, 1428, async=1
+/cmd.set('seq_view',1,'',0)
+/cmd.set('seq_view',0,'',0)
+cmd.set("surface_color", "gray60", 'Ams1', quiet=0)
