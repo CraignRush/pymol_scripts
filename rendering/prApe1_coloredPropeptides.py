@@ -27,7 +27,7 @@ pymol.finish_launching()
 img = [1080,768]
 cmd.util.performance(100)
 cmd.rebuild()
-
+cmd.viewport(img[0],img[1])
 
 
 # Load Structures
@@ -48,8 +48,9 @@ def create_prApe1():
     cmd.color("gray40", sname)
     cmd.color("yellow", "resi 1-45")
     cmd.show("cartoon", sname)        
-    cmd.set("surface_type",2,"",0)
-    cmd.set("transparency",0.8,"",0)
+    cmd.set("surface_type","2")
+    cmd.set("transparency",0.8)
+    cmd.show("surface", sname)
     outputPicture(fileName)
 
 
@@ -61,19 +62,20 @@ def create_mApe1():
     cmd.color("grey60", sname)
     cmd.show("cartoon", sname)        
     cmd.set("surface_type","2")
-    cmd.set("transparency","0.80000")
-    cmd.set("surface_color", "gray80", sname, quiet=0)
+    cmd.set("transparency",0.80000)
+    cmd.set("surface_color", "gray80")
+    cmd.show("surface", sname)
     outputPicture(fileName)
 
 def create_Ams1():
     spath = "../PDB/Ams1/5jm0.cif"
-    sname = "Ams1_surf"    
+    sname = "Ams1"    
     fileName = loadStructure(spath, sname)
     cmd.hide("everything")
     cmd.color("forest", sname)
     cmd.show("cartoon", sname)        
     cmd.set("surface_type","2")
-    cmd.set("transparency","0.80000")
+    cmd.set("transparency",0.800)
     cmd.set("surface_color", "tv_orange")
     cmd.show("surface", sname)
     outputPicture(fileName)
@@ -83,19 +85,19 @@ def outputPicture(fileName):
     cmd.set('ray_opaque_background', 0)
      
     print("Starting Ray tracing")
-    cmd.ray(img[0],img[1])
+    #cmd.ray(img[0],img[1])
      
     print("Exporting to {}".format(fileName))
-    cmd.png(fileName,img[0],img[1])
+    cmd.png(fileName,img[0],img[1],-1,1)
 
 create_Ams1()
-#cmd.reinitialize
-#create_mApe1
-#cmd.reinitialize
-#create_prApe1
+cmd.reinitialize()
+create_mApe1()
+cmd.reinitialize()
+create_prApe1()
 
 # Get out!
-#cmd.quit()
+cmd.quit()
 
 
 #pymol.util.performance(0)
